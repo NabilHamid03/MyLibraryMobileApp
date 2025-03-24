@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mobg6g60505</string>
+    <string name="log_in_textfield_label">Enter your email.</string>
+    <string name="log_in_textfield_error_label">Not a valid email !</string>
+    <string name="app_log_in_title">Log In</string>
+    <string name="app_main_screen_title">Welcome</string>
+</resources>
