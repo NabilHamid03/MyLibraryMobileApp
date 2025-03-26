@@ -15,7 +15,6 @@ class LogInViewModel : ViewModel() {
     val uiState: StateFlow<LogInState> = _uiState.asStateFlow()
 
     var userEmail by mutableStateOf("")
-        private set
 
     fun updateUserEmail(email: String){
         userEmail = email

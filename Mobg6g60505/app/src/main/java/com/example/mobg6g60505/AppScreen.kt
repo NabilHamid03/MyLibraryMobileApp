@@ -1,6 +1,5 @@
 package com.example.mobg6g60505
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -17,9 +16,9 @@ import com.example.mobg6g60505.ui.LogInViewModel
 import com.example.mobg6g60505.ui.screens.LogInScreen
 import com.example.mobg6g60505.ui.screens.MainScreen
 
-enum class AppScreen(@StringRes val title: Int) {
-    LogIn(title = R.string.app_log_in_title),
-    Main(title = R.string.app_main_screen_title)
+enum class AppScreen {
+    LogIn,
+    Main
 }
 
 @Composable

@@ -61,11 +61,11 @@ fun LogInScreen(
                 label = {
                     if (isEmailWrong) {
                         Text(
-                            text = stringResource(R.string.log_in_textfield_error_label),
+                            text = stringResource(R.string.log_in_text_field_error_label),
                             color = colors.error
                         )
                     } else {
-                        Text(stringResource(R.string.log_in_textfield_label))
+                        Text(stringResource(R.string.log_in_text_field_label))
                     }
                 },
                 isError = isEmailWrong,
