@@ -2,5 +2,6 @@ package com.example.mobg6g60505.data
 
 data class LogInState (
     val isEmailWrong: Boolean = false,
-    val userEmail: String = ""
+    val userEmail: String = "",
+    val userPassword: String = ""
 )

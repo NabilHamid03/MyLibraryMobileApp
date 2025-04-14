@@ -2,4 +2,6 @@
     <string name="app_name">Mobg6g60505</string>
     <string name="log_in_text_field_label">Enter your email.</string>
     <string name="log_in_text_field_error_label">Not a valid email !</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="password_text_field_label">Enter your password</string>
 </resources>
