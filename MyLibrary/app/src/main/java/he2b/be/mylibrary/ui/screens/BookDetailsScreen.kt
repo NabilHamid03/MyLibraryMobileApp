@@ -182,7 +182,6 @@ fun BookDetailsScreen(
                     Spacer(Modifier.height(24.dp))
 
                     ReviewSection(
-                        review = (book!!.review?.review ?: stringResource(R.string.no_review)),
                         reviewText = reviewText,
                         isEditing = isEditing,
                         onEditClick = { viewModel.updateEditing() },

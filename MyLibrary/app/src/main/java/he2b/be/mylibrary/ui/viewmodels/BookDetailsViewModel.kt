@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import he2b.be.mylibrary.database.BookRepository
 import he2b.be.mylibrary.model.Book
+import he2b.be.mylibrary.model.Review
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,6 +38,7 @@ class BookDetailsViewModel : ViewModel() {
                 withContext(Dispatchers.Main) {
                     _book.value = book
                     _score.value = book.review?.score ?: 0.0
+                    _review.value = book.review?.review ?: ""
                     _isLoading.value = false
                 }
             } catch (e: Exception) {
@@ -120,13 +122,20 @@ class BookDetailsViewModel : ViewModel() {
                     val currBook = _book.value
                     val currentReview = currBook?.review
 
-                    if (currBook != null && currentReview != null) {
-                        val updatedReview = currentReview.copy(review = review.value)
-                        _book.value = currBook.copy(review = updatedReview)
+                    val newReviewObj = if (currentReview != null) {
+                        currentReview.copy(review = _review.value)
+                    } else {
+                        Review(
+                            review = _review.value,
+                            bookId = _book.value?.id?:"",
+                            userId = _book.value?.userId?:"",
+                            score = 0.0,
+                        )
                     }
-
+                    if (currBook != null) {
+                        _book.value = currBook.copy(review = newReviewObj)
+                    }
                     _isEditing.value = false
-                    _review.value = _book.value?.review?.review ?: ""
                     _isLoading.value = false
                 }
             }

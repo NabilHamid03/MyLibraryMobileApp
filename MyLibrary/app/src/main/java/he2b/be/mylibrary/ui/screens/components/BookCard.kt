@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -18,6 +20,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -215,25 +218,56 @@ fun BookCard(
     if (showAddTagDialog) {
         AlertDialog(
             onDismissRequest = { showAddTagDialog = false },
-            title = { Text(stringResource(R.string.add_tag)) },
+            modifier = Modifier
+                .padding(16.dp)
+                .widthIn(min = 280.dp, max = 560.dp),
+            title = {
+                Text(
+                    text = stringResource(R.string.add_tag),
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 8.dp))
+            },
             text = {
-                LazyColumn {
+                LazyColumn(
+                    modifier = Modifier.heightIn(max = 320.dp)
+                ) {
                     items(allTags) { tag ->
-                        ListItem(
-                            headlineContent = { Text(tag.name) },
-                            modifier = Modifier.clickable {
-                                onAddTag(tag)
-                                showAddTagDialog = false
-                            }
-                        )
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 4.dp)
+                                .clickable {
+                                    onAddTag(tag)
+                                    showAddTagDialog = false
+                                },
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+                            ),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+                        ) {
+                            Text(
+                                text = tag.name,
+                                style = MaterialTheme.typography.bodyLarge,
+                                modifier = Modifier.padding(16.dp)
+                            )
+                        }
                     }
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showAddTagDialog = false }) {
+                TextButton(
+                    onClick = { showAddTagDialog = false },
+                    colors = ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.primary
+                    )
+                ) {
                     Text(stringResource(R.string.cancel))
                 }
-            }
+            },
+            containerColor = MaterialTheme.colorScheme.surface,
+            tonalElevation = 8.dp
         )
     }
 }

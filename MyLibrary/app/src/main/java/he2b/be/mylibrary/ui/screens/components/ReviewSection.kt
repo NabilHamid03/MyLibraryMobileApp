@@ -29,7 +29,6 @@ import he2b.be.mylibrary.R
 
 @Composable
 fun ReviewSection(
-    review: String,
     reviewText: String,
     isEditing: Boolean,
     onEditClick: () -> Unit,
@@ -80,7 +79,7 @@ fun ReviewSection(
                     .padding(16.dp)
             ) {
                 Text(
-                    text = review,
+                    text = if (reviewText.isEmpty()) stringResource(R.string.no_review) else reviewText,
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
