@@ -42,6 +42,7 @@ fun LogInScreen(
     val colors = MaterialTheme.colorScheme
 
     if (viewModel.loginSuccess) {
+        //Utiliser Login success
         LaunchedEffect(Unit) {
             navController.navigate(AppScreen.Main.name) {
                 popUpTo(AppScreen.LogIn.name) { inclusive = true }
