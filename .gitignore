@@ -5,6 +5,12 @@ local.properties
 *.jks
 google-services.json
 
+# --- Database dumps / backups (NEVER commit) ---
+*.backup
+*.dump
+*.sql
+*.sql.gz
+
 # --- Gradle ---
 .gradle/
 build/

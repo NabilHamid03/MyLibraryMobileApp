@@ -46,6 +46,32 @@ Le projet a besoin de clés API (Supabase + Google Books). Elles sont chargées 
    - `GOOGLE_KEY` : clé API Google Books (Google Cloud Console).
 3. Ouvrir le dossier `MyLibrary/` dans Android Studio et synchroniser Gradle.
 
+## CI / Distribution de l'APK
+
+Deux workflows GitHub Actions sont fournis dans [.github/workflows/](.github/workflows/) :
+
+- **`build-apk.yml`** — Build l'APK debug et l'attache à une release. Se déclenche sur `git push` d'un tag `v*` (ex. `v1.0.0`) ou manuellement via *Actions → Build & release APK → Run workflow*.
+- **`keep-supabase-alive.yml`** — Pingue Supabase tous les jours pour éviter la mise en pause après 7 jours d'inactivité.
+
+### Secrets GitHub à configurer
+
+Dans *Settings → Secrets and variables → Actions → New repository secret*, ajouter :
+
+| Nom | Valeur |
+|---|---|
+| `SUPABASE_URL` | L'URL de ton projet Supabase (ex. `https://xxx.supabase.co`) |
+| `SUPABASE_KEY` | La clé **anon / publishable** (jamais la `service_role`) |
+| `GOOGLE_KEY` | Ta clé API Google Books |
+
+### Publier une nouvelle version
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+L'APK sera buildé et publié sur la page *Releases* du repo.
+
 ## Améliorations futures
 
 - Gestion de la déconnexion utilisateur.
